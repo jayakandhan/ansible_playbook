@@ -1,0 +1,13 @@
+--- 
+ - 
+  become: true
+  hosts: worker1
+  tasks: 
+    - name: "Create a file in worker1 hosts"
+      file: 
+        state: touch
+        path: /var/www/html/index.html
+    - name: " Insert a line into exist file"
+      lineinfile: 
+        path: /var/www/html/index.html
+        line: Testing the Ansible machine though httpd install and adding the content in index.html By Aathithyavarman

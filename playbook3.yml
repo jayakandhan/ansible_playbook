@@ -1,0 +1,19 @@
+--- 
+- 
+  become: true
+  hosts: worker2
+  tasks: 
+    - 
+      name: "Installing httpd"
+      yum: 
+        name: httpd
+        state: latest
+    - 
+      name: "ensure apache is running"
+      service: 
+        name: httpd
+        state: started
+    - name: "Copying the local index.html into worker2 machine"
+      copy: 
+        src: /etc/ansible/playbook/index.html      
+        dest: /var/www/html/index.html

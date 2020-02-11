@@ -1,0 +1,25 @@
+--- 
+- 
+  become: true
+  hosts: worker2
+  tasks: 
+    - 
+      file: 
+        path: /home/ec2-user/aathithyavarman.txt
+        state: touch
+      name: "Create a file in worker2 hosts"
+    - 
+      name: "Insert a line into exist file"
+      shell: "echo \"Hostname\" >> /home/ec2-user/aathithyavarman.txt"
+    - 
+      file: 
+        path: /home/ec2-user/testingdirectory
+        state: directory
+      name: "Creating a directory in worker2 machine"
+    - 
+      lineinfile: 
+        insertafter: '^#Hostname'
+        path: /home/ec2-user/aathithyavarman.txt
+        regexp: '^Hostname'
+        line: present
+      name: "using regex with lineingile"
